@@ -433,7 +433,7 @@ namespace EliteDangerousCore
                 cmd.AddParameterWithValue("@eventtype", (int)eventtype);
                 cmd.AddParameterWithValue("@commander", (int)commanderid);
                 cmd.AddParameterWithValue("@start", startutc);
-                cmd.AddParameterWithValue("@stop", stoputc);
+                cmd.AddParameterWithValue("@Stop", stoputc);
 
                 using (var reader = cmd.ExecuteReader())
                 {

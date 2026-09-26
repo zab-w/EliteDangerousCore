@@ -125,9 +125,9 @@ namespace EliteDangerousCore.DB
             using (DbCommand cmd = cn.CreateCommand(
             "Update TravelLogUnit set Name=@Name, Type=@type, size=@size, Path=@Path, CommanderID=@CommanderID, GameVersion=@GameVersion, Build=@Build where ID=@id"))
             {
-                cmd.AddParameterWithValue("@ID", ID);
+                cmd.AddParameterWithValue("@id", ID);
                 cmd.AddParameterWithValue("@Name", filename);
-                cmd.AddParameterWithValue("@Type", Type);
+                cmd.AddParameterWithValue("@type", Type);
                 cmd.AddParameterWithValue("@size", Size);
                 cmd.AddParameterWithValue("@Path", Path);
                 cmd.AddParameterWithValue("@CommanderID", CommanderId);

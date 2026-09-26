@@ -99,7 +99,7 @@ namespace EliteDangerousCore.DB
         {
             using (DbCommand cmd = cn.CreateCommand("Update SystemNote set Name=@Name, Time=@Time, Note=@Note, Journalid=@journalid, JournalText=@jt, UTCTime=@utc where ID=@id"))
             {
-                cmd.AddParameterWithValue("@ID", ID);
+                cmd.AddParameterWithValue("@id", ID);
                 cmd.AddParameterWithValue("@Name", SystemName);
                 cmd.AddParameterWithValue("@Note", Note);
                 cmd.AddParameterWithValue("@Time", LocalTimeLastCreatedEdited);

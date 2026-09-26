@@ -212,7 +212,7 @@ namespace EliteDangerousCore
                         cmd.AddParameterWithValue("@EGOApiKey", "");// Unused field, null out
                         cmd.AddParameterWithValue("@SyncToInara", toinara);
                         cmd.AddParameterWithValue("@InaraName", inaraname ?? "");
-                        cmd.AddParameterWithValue("@InaraApiKey", inaraapikey ?? "");
+                        cmd.AddParameterWithValue("@InaraAPIKey", inaraapikey ?? "");
                         cmd.AddParameterWithValue("@HomeSystem", homesystem ?? "");
                         cmd.AddParameterWithValue("@MapColour", mapcolour == -1 ? System.Drawing.Color.Red.ToArgb() : mapcolour);
                         cmd.AddParameterWithValue("@MapCentreOnSelection", false); // unused since 15.0

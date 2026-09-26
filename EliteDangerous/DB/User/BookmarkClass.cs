@@ -294,7 +294,7 @@ namespace EliteDangerousCore.DB
                 if (TimeUTC < EDDFixesDates.BookmarkUTCswitchover)
                     tme = TimeUTC.ToLocalTime();
 
-                cmd.AddParameterWithValue("@ID", ID);
+                cmd.AddParameterWithValue("@id", ID);
                 cmd.AddParameterWithValue("@sname", StarName);
                 cmd.AddParameterWithValue("@xp", X);
                 cmd.AddParameterWithValue("@yp", Y);
