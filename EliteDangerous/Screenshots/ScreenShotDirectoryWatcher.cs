@@ -103,16 +103,29 @@ namespace EliteDangerousCore.ScreenShots
 
                 string filepath = jescreenshot.Filename;
 
-                if (filepath.StartsWith("\\ED_Pictures\\"))     // if its an ss record, try and find it either in watchedfolder or in default loc
+                // the journal filename is untrusted - only accept \ED_Pictures\<name>, and only use the bare file name, so it can't point
+                // outside the screenshot folders (absolute, UNC or .. paths)
+                if (filepath == null || !filepath.StartsWith("\\ED_Pictures\\"))
                 {
-                    filepath = filepath.Substring(13);
-                    filepath = Path.Combine(watchedfolder, filepath);
+                    logit($"Journal screenshot {filepath} ignored, not in ED_Pictures");
+                    return;
+                }
 
-                    if (!File.Exists(filepath))
-                    {
-                        string defaultInputDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Frontier Developments", "Elite Dangerous");
-                        filepath = Path.Combine(defaultInputDir, filepath);
-                    }
+                string filename = filepath.Substring(13);
+                filename = filename.IndexOfAny(Path.GetInvalidPathChars()) >= 0 ? "" : Path.GetFileName(filename);    // GetFileName throws on invalid path chars
+
+                if (filename.Length == 0 || filename == "." || filename == ".." || filename.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+                {
+                    logit($"Journal screenshot {filepath} ignored, invalid file name");
+                    return;
+                }
+
+                filepath = Path.Combine(watchedfolder, filename);       // try and find it either in watchedfolder or in default loc
+
+                if (!File.Exists(filepath))
+                {
+                    string defaultInputDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Frontier Developments", "Elite Dangerous");
+                    filepath = Path.Combine(defaultInputDir, filename);
                 }
 
                 if (!File.Exists(filepath))
